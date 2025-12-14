@@ -3,10 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/062335cba3.js"
+      crossorigin="anonymous"
+    ></script>
     <title>testing-vite-js</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <header class="main-header container">
+      <nav>
+        <ul class="ul-defaults-none nav-items nav-js">
+          <li class="nav-link" data-open="modal-form-js">Form</li>
+          <div class="dropdown" data-dropdown>
+            <li class="nav-link" data-dropdown-button>Menus</li>
+            <div class="dropdown-menu">Dropdown Content</div>
+          </div>
+          <li class="nav-link">Contact</li>
+        </ul>
+      </nav>
+    </header>
+    <section class="portfolio-section container">
+      <div class="portfolio-header">
+        <div class="search-container">
+          <label for="search">
+            <input type="text" id="search" class="btn-primary" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </label>
+        </div>
+        <div class="portfolio-navbar nav-items">
+          <ul class="portfolio-nav ul-defaults-none">
+            <li class="filter-link" data-filter="all">All</li>
+            <li class="filter-link" data-filter="web">Web</li>
+            <li class="filter-link" data-filter="app">App</li>
+            <li class="filter-link" data-filter="ui">Ui</li>
+          </ul>
+        </div>
+      </div>
+      <div class="portfolio-grid"></div>
+    </section>
+    <div class="modal-overlay" id="modal-form-js" data-close>
+      <div class="modal-body">
+        <form action="#">
+          <div class="text-input input-primary">
+            <label for="first-name-input">First Name:</label>
+            <input type="text" id="first-name-input" name="username" />
+          </div>
+          <div class="input-error">
+            <div class="error-message">First Name Invalid</div>
+          </div>
+          <div class="text-input input-primary">
+            <label for="last-name-input">Last Name:</label>
+            <input type="text" id="last-name-input" name="username" />
+          </div>
+          <div class="input-error">
+            <div class="error-message">Last Name Invalid</div>
+          </div>
+          <div class="text-input input-primary">
+            <label for="email-input">Email:</label>
+            <input type="email" id="email-input" name="email" />
+          </div>
+          <div class="input-error">
+            <div class="error-message">Email Invalid</div>
+          </div>
+          <div class="text-input input-primary">
+            <label for="city-input">City:</label>
+            <input type="text" id="city-input" name="city" list="cities" />
+          </div>
+          <div class="input-error">
+            <div class="error-message">City Invalid</div>
+          </div>
+          <div class="phone-input text-input">
+            <label htmlFor="phone">Phone:</label>
+            <input type="text" name="phone" data-phone="1" maxlength="3" />
+            -
+            <input type="text" name="phone" data-phone="2" maxlength="3" />
+            -
+            <input type="text" name="phone" data-phone="3" maxlength="4" />
+          </div>
+          <div class="input-error">
+            <div class="error-message">Phone Number Invalid</div>
+          </div>
+          <div class="input-submit">
+            <input
+              type="submit"
+              value="Submit"
+              id="submit-react"
+              class="btn-primary"
+            />
+          </div>
+          <datalist id="cities"></datalist>
+        </form>
+        <div class="close-button">X</div>
+      </div>
+    </div>
+    <script type="module" src="/src/js/index.ts"></script>
   </body>
 </html>

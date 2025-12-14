@@ -1,0 +1,15 @@
+.nav-items {
+  display: flex;
+}
+
+.nav-items li {
+  padding: var(--size-8);
+  font-size: var(--size-20);
+  transition: color 0.1s ease;
+}
+
+.nav-items li.active,
+.nav-items li:hover {
+  color: var(--color-link);
+  cursor: pointer;
+}

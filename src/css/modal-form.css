@@ -1,0 +1,23 @@
+.modal-body .phone-input {
+  margin-top: var(--size-20);
+}
+
+#modal-form-js .input-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--size-20);
+}
+
+#modal-form-js .input-submit input:hover {
+  cursor: pointer;
+}
+
+#modal-form-js .input-submit input:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#modal-form-js .input-submit input:active {
+  background-color: rgba(0, 0, 0, 0.02);
+  color: #353535;
+}

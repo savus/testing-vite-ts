@@ -1,0 +1,54 @@
+.portfolio-section {
+  padding: 1rem;
+}
+
+.portfolio-section .portfolio-header {
+  display: flex;
+  gap: var(--size-20);
+}
+
+.search-container label,
+.portfolio-section .portfolio-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container input {
+  border-radius: 30px;
+  padding: 0.9rem 2rem 0.9rem 1rem;
+  width: 120px;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.search-container label i {
+  position: relative;
+  left: -15%;
+}
+
+.portfolio-section .portfolio-grid {
+  padding-top: var(--size-20);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-8);
+}
+
+.portfolio-card {
+  --box-size: 255px;
+  width: var(--box-size);
+  height: var(--box-size);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+.portfolio-card .card-body img {
+  width: 100%;
+  height: var(--box-size);
+  object-fit: cover;
+}
+
+.portfolio-card h3 {
+  margin: 0;
+}
