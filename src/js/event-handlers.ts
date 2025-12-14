@@ -29,12 +29,15 @@ import {
 import { toggleErrorMessage, validateField } from "./utils/validations.ts";
 
 /* ClICK */
-export const navBarClickHandler = ({ target }) => {
-  const isLink = target.matches(navLink);
+export const navBarClickHandler = (e: MouseEvent) => {
+  const linkElement = e.target as HTMLLIElement;
+  const isLink = linkElement.matches(navLink);
   if (isLink) {
-    const elementToOpen = document.getElementById(target.dataset.open);
+    const elementToOpen = document.getElementById(
+      linkElement.dataset.open || ""
+    );
     elementToOpen?.classList.add(isVisible);
-    setActive(navLink, target);
+    setActive(navLink, linkElement);
   }
 };
 
@@ -43,7 +46,7 @@ export const closeButtonOnClick = ({ target }) => {
   parentToClose.classList.remove(isVisible);
 };
 
-export const handlePortfolioNavFilter = (value) => {
+export const handlePortfolioNavFilter = (value: string) => {
   portfolioCards.forEach((card) => {
     if (value === "all") card.style.display = "block";
     else if (value.includes(card.dataset.filter)) card.style.display = "block";
