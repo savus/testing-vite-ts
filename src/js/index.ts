@@ -91,7 +91,9 @@ export const portfolioCards = document.querySelectorAll(
   `.${portfolioCardClass}`
 );
 
-navBar?.addEventListener("click", navBarClickHandler);
+navBar?.addEventListener("click", (e) => {
+  navBarClickHandler(e);
+});
 
 /* MODAL FORM */
 closeButtons.forEach((button) => {

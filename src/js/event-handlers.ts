@@ -38,6 +38,7 @@ export const navBarClickHandler = (e: MouseEvent) => {
     );
     elementToOpen?.classList.add(isVisible);
     setActive(navLink, linkElement);
+    console.log(linkElement);
   }
 };
 
