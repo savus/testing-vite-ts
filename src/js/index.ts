@@ -20,6 +20,7 @@ import {
   setActive,
 } from "./helper-functions.ts";
 import { populateCities, populatePortfolioCards } from "./initialization.ts";
+import type { TUser, TUserInformation } from "../types.ts";
 
 /* SELECTORS */
 export const active = "active";
@@ -33,53 +34,77 @@ export const navLink = ".nav-link";
 const dataPhone = "data-phone";
 const firstNameId = "first-name-input";
 const lastNameId = "last-name-input";
+const emailId = "email-input";
+const cityId = "city-input";
 const cities = "cities";
 const portfolioClass = "portfolio-grid";
 const portfolioCardClass = "portfolio-card";
 const searchId = "search";
 const portfolioNavClass = "portfolio-nav";
 
-const navBar = document.querySelector(nav);
+const navBar = document.querySelector(nav)!;
 
 /*MODAL FORM*/
 export let hasSubmitted = false;
-export const setHasSubmitted = (state) => (hasSubmitted = state);
-const userForm = document.getElementById("modal-form-js");
-export let userInformation = null;
-export const setUserInformation = (data) => (userInformation = data);
-export const firstNameInput = document.getElementById(firstNameId);
-export const lastNameInput = document.getElementById(lastNameId);
-export const emailInput = document.getElementById("email-input");
-export const cityInput = document.getElementById("city-input");
+export const setHasSubmitted = (state: boolean) => (hasSubmitted = state);
+
+const userForm = document.getElementById("modal-form-js")!;
+
+export let userInformation: TUserInformation = null;
+export const setUserInformation = (data: TUserInformation) =>
+  (userInformation = data);
+
+export const firstNameInput = document.getElementById(
+  firstNameId
+) as HTMLInputElement;
+export const lastNameInput = document.getElementById(
+  lastNameId
+) as HTMLInputElement;
+export const emailInput = document.getElementById(emailId) as HTMLInputElement;
+export const cityInput = document.getElementById(cityId) as HTMLInputElement;
 export const formInputs = [
   firstNameInput,
   lastNameInput,
   emailInput,
   cityInput,
 ];
-export const phone1 = document.querySelector(`[${dataPhone}='1']`);
-export const phone2 = document.querySelector(`[${dataPhone}='2']`);
-export const phone3 = document.querySelector(`[${dataPhone}='3']`);
+
+export const phone1 = document.querySelector(
+  `[${dataPhone}='1']`
+) as HTMLInputElement;
+export const phone2 = document.querySelector(
+  `[${dataPhone}='2']`
+) as HTMLInputElement;
+export const phone3 = document.querySelector(
+  `[${dataPhone}='3']`
+) as HTMLInputElement;
+
 export const phoneInputs = [phone1, phone2, phone3];
-export const setPhoneInputs = (array) =>
-  array.forEach((value, index) => (phoneInputs[index].value = value));
+export const setPhoneInputs = (array: string[]) => {
+  array.forEach((val, index) => {
+    phoneInputs[index].value = val;
+  });
+};
+
 export const maxInputLengths = [3, 3, 4];
 export let doBadInputsExist = false;
-export const setDoBadInputsExist = (boolean) => (doBadInputsExist = boolean);
+export const setDoBadInputsExist = (boolean: true | false) =>
+  (doBadInputsExist = boolean);
+
 const closeButton = "close-button";
 const closeButtons = document.querySelectorAll(`.${closeButton}`);
+
 export const cityDatalist = document.getElementById(cities);
 
 /* PORTFOLIO */
-export const searchInput = document.getElementById(searchId);
-const portfolioNav = document.querySelector(`.${portfolioNavClass}`);
-console.log(portfolioNav);
+export const searchInput = document.getElementById(searchId)!;
+const portfolioNav = document.querySelector(`.${portfolioNavClass}`)!;
 
 export const portfolioGrid = document.querySelector(`.${portfolioClass}`);
 populatePortfolioCards();
 export const portfolioCards = document.querySelectorAll(
   `.${portfolioCardClass}`
-);
+) as NodeListOf<HTMLDivElement>;
 
 navBar.addEventListener("click", navBarClickHandler);
 
@@ -103,17 +128,19 @@ phoneInputs.forEach((input, index) => {
 
 userForm.addEventListener("submit", formSubmitHandler);
 
-searchInput.addEventListener("keyup", ({ target: { value } }) => {
+searchInput.addEventListener("keyup", ({ target }) => {
+  const searchElement = target as HTMLInputElement;
   removeActive(dataFilter);
-  handlePortfolioNavFilter(value);
+  handlePortfolioNavFilter(searchElement.value);
 });
 
 portfolioNav.addEventListener("click", ({ target }) => {
-  const isDataFilter = target.matches(`${dataFilter}`);
+  const navElement = target as HTMLElement;
+  const isDataFilter = navElement.matches(`${dataFilter}`);
   if (isDataFilter) {
     clearSearchInput();
     setActive(dataFilter, target);
-    const dataset = target.dataset.filter;
+    const dataset = navElement.dataset.filter;
     handlePortfolioNavFilter(dataset);
   }
 });
