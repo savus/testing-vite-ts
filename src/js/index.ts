@@ -122,7 +122,7 @@ formInputs.forEach((input) => {
   });
 });
 
-phoneInputs.forEach((input, index) => {
+phoneInputs.forEach((input, index: number) => {
   input.addEventListener("keyup", phoneOnChangeEventHandler(index));
 });
 
@@ -140,7 +140,7 @@ portfolioNav.addEventListener("click", ({ target }) => {
   if (isDataFilter) {
     clearSearchInput();
     setActive(dataFilter, target);
-    const dataset = navElement.dataset.filter;
+    const dataset = navElement.dataset.filter!;
     handlePortfolioNavFilter(dataset);
   }
 });
