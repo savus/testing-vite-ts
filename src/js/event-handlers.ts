@@ -72,11 +72,6 @@ export const documentClickHandler = (e: Event) => {
 /* KEYUP */
 
 const handleInputValidation = (inputField: HTMLInputElement) => {
-  // const {
-  //   value,
-  //   attributes: { name },
-  // } = inputField;
-
   const regex = inputField.name.valueOf();
   const inputValue =
     regex === "phone" ? getJoinedPhoneInput(phoneInputs) : inputField.value;

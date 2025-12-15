@@ -94,13 +94,13 @@ export const setDoBadInputsExist = (boolean: true | false) =>
 const closeButton = "close-button";
 const closeButtons = document.querySelectorAll(`.${closeButton}`);
 
-export const cityDatalist = document.getElementById(cities);
+export const cityDatalist = document.getElementById(cities)!;
 
 /* PORTFOLIO */
 export const searchInput = document.getElementById(searchId)!;
 const portfolioNav = document.querySelector(`.${portfolioNavClass}`)!;
 
-export const portfolioGrid = document.querySelector(`.${portfolioClass}`);
+export const portfolioGrid = document.querySelector(`.${portfolioClass}`)!;
 populatePortfolioCards();
 export const portfolioCards = document.querySelectorAll(
   `.${portfolioCardClass}`
