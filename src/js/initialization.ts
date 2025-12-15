@@ -50,8 +50,8 @@ export const createPortfolioCard = ({
 };
 
 export const populatePortfolioCards = () => {
-  PortfolioCards.forEach((card) => {
-    const cardElement = createPortfolioCard(card);
-    portfolioGrid.appendChild(cardElement);
-  });
+  // PortfolioCards.forEach((card) => {
+  //   const cardElement = createPortfolioCard(card);
+  //   portfolioGrid.appendChild(cardElement);
+  // });
 };

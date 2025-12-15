@@ -47,8 +47,17 @@
   width: 100%;
   height: var(--box-size);
   object-fit: cover;
+  position: relative;
 }
 
+.card-body .popup-box {
+  background-color: white;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 0px;
+  z-index: 10;
+}
 .portfolio-card h3 {
   margin: 0;
 }
