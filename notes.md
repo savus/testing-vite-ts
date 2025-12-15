@@ -14,4 +14,4 @@ BUG - navbarClickHandler type declaration for event object as e: MouseEvent caus
 
 SOLUTION - use e: Event instead
 
-TASK: Make sure portfolio cards work in html before initializing with javascript
+TASK: refactor api code into cleaner abstractions
