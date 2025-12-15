@@ -25,7 +25,7 @@ import {
 import {
   clearFormValues,
   getJoinedPhoneInput,
-  removeActive,
+  postUser,
   setActive,
 } from "./helper-functions.ts";
 import { toggleErrorMessage, validateField } from "./utils/validations.ts";
@@ -157,7 +157,13 @@ export const formSubmitHandler = (e: SubmitEvent) => {
       email: emailInput.value.trim(),
       phone: phoneInputs.map((input) => input.value).join(""),
     });
+    postUser({
+      firstName: firstNameInput.value.trim(),
+      lastName: lastNameInput.value.trim(),
+      city: cityInput.value.trim(),
+      email: emailInput.value.trim(),
+      phone: phoneInputs.map((input) => input.value).join(""),
+    });
     clearFormValues();
-    console.log(userInformation);
   }
 };

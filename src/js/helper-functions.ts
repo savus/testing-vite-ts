@@ -1,5 +1,14 @@
-import type { TPhoneInputs } from "../types.ts";
-import { active, formInputs, phoneInputs, searchInput } from "./index.ts";
+import type { TPhoneInputs, TUser } from "../types.ts";
+import { Requests } from "./api.ts";
+import {
+  active,
+  allUsers,
+  formInputs,
+  phoneInputs,
+  searchInput,
+  setAllUsers,
+} from "./index.ts";
+import { populateUsers } from "./initialization.ts";
 
 export const setActive = (selector: string, element: HTMLElement) => {
   const activeElement = document.querySelector(`${selector}.${active}`);
@@ -26,4 +35,27 @@ export const getJoinedPhoneInput = (inputs: TPhoneInputs) =>
 
 export const clearSearchInput = () => {
   searchInput.value = "";
+};
+
+export const getAllUsers = () => Requests.getAllUsers().then(setAllUsers);
+
+export const postUser = (body: Omit<TUser, "id">) =>
+  Requests.postUser(body).then(() => {
+    Requests.getAllUsers()
+      .then((users) => {
+        setAllUsers(users);
+      })
+      .then(() => {
+        populateUsers();
+      });
+  });
+
+export const createUserElement = (user: TUser) => {
+  const { firstName, lastName } = user;
+  const userElement = `<li>
+    <span class="first-name">${firstName}</span>
+    :
+    <span class="last-name">${lastName}</span> 
+  </li>`;
+  return userElement;
 };

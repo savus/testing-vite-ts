@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "bob",
+      "lastName": "bob",
+      "city": "bob",
+      "email": "bob@gmail.com",
+      "phone": "8088088088"
+    },
+    {
+      "id": "2",
+      "firstName": "bobs",
+      "lastName": "bobs",
+      "city": "bob",
+      "email": "bob@gmail.com",
+      "phone": "8088088088"
+    },
+    {
+      "id": "3",
+      "firstName": "bo",
+      "lastName": "bo",
+      "city": "bo",
+      "email": "bob@gmail.com",
+      "phone": "8088088088"
+    },
+    {
+      "id": "5905",
+      "firstName": "justin",
+      "lastName": "bunustin",
+      "city": "hobbiton",
+      "email": "ail@gmail.com",
+      "phone": "4444444444"
+    }
+  ]
+}
