@@ -42,6 +42,7 @@ const portfolioClass = "portfolio-grid";
 const portfolioCardClass = "portfolio-card";
 const searchId = "search";
 const portfolioNavClass = "portfolio-nav";
+export const modalOverlayClass = "modal-overlay";
 
 const navBar = document.querySelector(nav)!;
 

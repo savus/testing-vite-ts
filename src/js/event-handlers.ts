@@ -12,6 +12,7 @@ import {
   isVisible,
   lastNameInput,
   maxInputLengths,
+  modalOverlayClass,
   navLink,
   phoneInputs,
   portfolioCards,
@@ -24,6 +25,7 @@ import {
 import {
   clearFormValues,
   getJoinedPhoneInput,
+  removeActive,
   setActive,
 } from "./helper-functions.ts";
 import { toggleErrorMessage, validateField } from "./utils/validations.ts";
@@ -55,8 +57,13 @@ export const handlePortfolioNavFilter = (value: string) => {
 
 export const documentClickHandler = (e: Event) => {
   const document = e.target as HTMLElement;
+
   const isDropdownButton = document.matches(dataDropdownButton);
   const dropDownParent = document.closest(dataDropdown)!;
+
+  const isModalOverlay = document.matches(`.${modalOverlayClass}`);
+
+  /* DROPDOWN MENUS */
   if (!isDropdownButton && dropDownParent != null) return;
 
   if (isDropdownButton) {
@@ -67,6 +74,11 @@ export const documentClickHandler = (e: Event) => {
     if (dropdown === dropDownParent) return;
     dropdown.classList.remove(active);
   });
+
+  /* MODALS */
+  if (isModalOverlay) {
+    document.classList.remove(isVisible);
+  }
 };
 
 /* KEYUP */
