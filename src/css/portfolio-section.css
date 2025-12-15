@@ -39,25 +39,65 @@
   width: var(--box-size);
   height: var(--box-size);
   border-radius: 10px;
-  overflow: hidden;
   border: 1px solid black;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .portfolio-card .card-body img {
   width: 100%;
   height: var(--box-size);
   object-fit: cover;
-  position: relative;
 }
 
-.card-body .popup-box {
-  background-color: white;
+.portfolio-card .popup-box {
+  --transition-spd: 0.4s;
+  --opacity: 0;
+  --visibility: 0;
+  --translate-y: 30%;
+  transform: translateY(var(--translate-y));
+  opacity: var(--opacity);
+  visibility: var(--visibility);
   position: absolute;
   left: 20px;
   right: 20px;
-  bottom: 0px;
-  z-index: 10;
+  bottom: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all var(--transition-spd) ease-in-out;
+  text-align: center;
+  padding: var(--size-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-8);
 }
-.portfolio-card h3 {
+
+.portfolio-card:hover .popup-box {
+  --translate-y: -20%;
+  --opacity: 1;
+  --visibility: visible;
+}
+
+.portfolio-card .popup-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.popup-box .popup-header {
+  font-size: var(--size-16);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.popup-box .popup-header,
+.popup-box .popup-content {
   margin: 0;
 }

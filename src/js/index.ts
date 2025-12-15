@@ -1,3 +1,4 @@
+import "../css/base.css";
 import "../css/index.css";
 import "../css/header.css";
 import "../css/navbar.css";
