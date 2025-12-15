@@ -20,7 +20,7 @@ import {
   setActive,
 } from "./helper-functions.ts";
 import { populateCities, populatePortfolioCards } from "./initialization.ts";
-import type { TUser, TUserInformation } from "../types.ts";
+import type { TPhoneInputs, TUserInformation } from "../types.ts";
 
 /* SELECTORS */
 export const active = "active";
@@ -79,7 +79,7 @@ export const phone3 = document.querySelector(
   `[${dataPhone}='3']`
 ) as HTMLInputElement;
 
-export const phoneInputs = [phone1, phone2, phone3];
+export const phoneInputs: TPhoneInputs = [phone1, phone2, phone3];
 export const setPhoneInputs = (array: string[]) => {
   array.forEach((val, index) => {
     phoneInputs[index].value = val;
@@ -97,7 +97,9 @@ const closeButtons = document.querySelectorAll(`.${closeButton}`);
 export const cityDatalist = document.getElementById(cities)!;
 
 /* PORTFOLIO */
-export const searchInput = document.getElementById(searchId)!;
+export const searchInput = document.getElementById(
+  searchId
+) as HTMLInputElement;
 const portfolioNav = document.querySelector(`.${portfolioNavClass}`)!;
 
 export const portfolioGrid = document.querySelector(`.${portfolioClass}`)!;
@@ -134,12 +136,12 @@ searchInput.addEventListener("keyup", ({ target }) => {
   handlePortfolioNavFilter(searchElement.value);
 });
 
-portfolioNav.addEventListener("click", ({ target }) => {
-  const navElement = target as HTMLElement;
+portfolioNav.addEventListener("click", (e: Event) => {
+  const navElement = e.target as HTMLElement;
   const isDataFilter = navElement.matches(`${dataFilter}`);
   if (isDataFilter) {
     clearSearchInput();
-    setActive(dataFilter, target);
+    setActive(dataFilter, navElement);
     const dataset = navElement.dataset.filter!;
     handlePortfolioNavFilter(dataset);
   }

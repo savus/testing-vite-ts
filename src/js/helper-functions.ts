@@ -1,12 +1,13 @@
+import type { TPhoneInputs } from "../types.ts";
 import { active, formInputs, phoneInputs, searchInput } from "./index.ts";
 
-export const setActive = (selector, element) => {
+export const setActive = (selector: string, element: HTMLElement) => {
   const activeElement = document.querySelector(`${selector}.${active}`);
   if (activeElement !== null) activeElement.classList.remove(active);
   element.classList.add(active);
 };
 
-export const removeActive = (selector) => {
+export const removeActive = (selector: string) => {
   const activeElement = document.querySelector(`${selector}.${active}`);
   if (activeElement !== null) activeElement.classList.remove(active);
 };
@@ -20,7 +21,7 @@ export const clearFormValues = () => {
   clearPhoneInputs();
 };
 
-export const getJoinedPhoneInput = (inputs) =>
+export const getJoinedPhoneInput = (inputs: TPhoneInputs) =>
   inputs.map((input) => input.value).join("");
 
 export const clearSearchInput = () => {
