@@ -24,3 +24,7 @@ export type TPhoneInputs = [
   HTMLInputElement,
   HTMLInputElement
 ];
+
+export type TRegexPatterns = {
+  [key: string]: RegExp;
+};
