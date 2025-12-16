@@ -2,13 +2,11 @@ import type { TPhoneInputs, TUser } from "../types.ts";
 import { Requests } from "./api.ts";
 import {
   active,
-  allUsers,
   formInputs,
   phoneInputs,
   searchInput,
   setAllUsers,
 } from "./index.ts";
-import { populateUsers } from "./initialization.ts";
 
 export const setActive = (selector: string, element: HTMLElement) => {
   const activeElement = document.querySelector(`${selector}.${active}`);
@@ -37,9 +35,10 @@ export const clearSearchInput = () => {
   searchInput.value = "";
 };
 
-export const getAllUsers = () => Requests.getAllUsers().then(setAllUsers);
+export const refetchData = () => Requests.getAllUsers().then(setAllUsers);
 
-export const postUser = (body: Omit<TUser, "id">) => Requests.postUser(body);
+export const createUser = (body: Omit<TUser, "id">) =>
+  Requests.postUser(body).then(refetchData);
 
 export const createUserElement = (user: TUser) => {
   const { firstName, lastName, city, email, phone } = user;

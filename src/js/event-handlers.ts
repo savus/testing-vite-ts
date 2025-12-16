@@ -1,6 +1,5 @@
 import {
   active,
-  allUsers,
   cityInput,
   dataClose,
   dataDropdown,
@@ -21,13 +20,11 @@ import {
   setHasSubmitted,
   setPhoneInputs,
   setUserInformation,
-  userInformation,
 } from "./index.ts";
 import {
   clearFormValues,
-  getAllUsers,
+  createUser,
   getJoinedPhoneInput,
-  postUser,
   setActive,
 } from "./helper-functions.ts";
 import { toggleErrorMessage, validateField } from "./utils/validations.ts";
@@ -161,15 +158,13 @@ export const formSubmitHandler = (e: SubmitEvent) => {
       phone: phoneInputs.map((input) => input.value).join(""),
     });
 
-    postUser({
+    createUser({
       firstName: firstNameInput.value.trim(),
       lastName: lastNameInput.value.trim(),
       city: cityInput.value.trim(),
       email: emailInput.value.trim(),
       phone: phoneInputs.map((input) => input.value).join(""),
-    })
-      .then(getAllUsers)
-      .then(populateUsers);
+    }).then(populateUsers);
 
     clearFormValues();
   }

@@ -17,7 +17,7 @@ import {
 import {
   clearFormValues,
   clearSearchInput,
-  getAllUsers,
+  refetchData,
   removeActive,
   setActive,
 } from "./helper-functions.ts";
@@ -129,9 +129,8 @@ export const usersList = document.querySelector(".users")!;
 clearSearchInput();
 clearFormValues();
 populateCities();
-getAllUsers().then(() => {
-  populateUsers();
-});
+
+refetchData().then(populateUsers);
 
 /* EVENT LISTENERS */
 navBar.addEventListener("click", navBarClickHandler);

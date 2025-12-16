@@ -1,4 +1,4 @@
-import type { TPortfolioCard, TUser } from "../types.ts";
+import type { TPortfolioCard } from "../types.ts";
 import { createUserElement } from "./helper-functions.ts";
 import { allUsers, cityDatalist, portfolioGrid, usersList } from "./index.ts";
 import { PortfolioCards } from "./PortfolioCards.ts";
