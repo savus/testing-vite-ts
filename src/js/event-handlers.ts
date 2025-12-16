@@ -4,6 +4,7 @@ import {
   dataClose,
   dataDropdown,
   dataDropdownButton,
+  dataFilter,
   doBadInputsExist,
   emailInput,
   firstNameInput,
@@ -23,6 +24,7 @@ import {
 } from "./index.ts";
 import {
   clearFormValues,
+  clearSearchInput,
   createUser,
   getJoinedPhoneInput,
   setActive,
@@ -53,6 +55,17 @@ export const handlePortfolioNavFilter = (value: string) => {
     else if (value.includes(card.dataset.filter!)) card.style.display = "block";
     else card.style.display = "none";
   });
+};
+
+export const handlePortfolioNavClick = (e: Event) => {
+  const navElement = e.target as HTMLElement;
+  const isDataFilter = navElement.matches(`${dataFilter}`);
+  if (isDataFilter) {
+    clearSearchInput();
+    setActive(dataFilter, navElement);
+    const dataset = navElement.dataset.filter!;
+    handlePortfolioNavFilter(dataset);
+  }
 };
 
 export const documentClickHandler = (e: Event) => {

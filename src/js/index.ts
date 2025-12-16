@@ -9,6 +9,7 @@ import {
   closeButtonOnClick,
   documentClickHandler,
   formSubmitHandler,
+  handlePortfolioNavClick,
   handlePortfolioNavFilter,
   inputKeyUpHandler,
   navBarClickHandler,
@@ -19,7 +20,6 @@ import {
   clearSearchInput,
   refetchData,
   removeActive,
-  setActive,
 } from "./helper-functions.ts";
 import {
   populateCities,
@@ -38,7 +38,7 @@ export const isVisible = "is-visible";
 export const dataClose = "[data-close]";
 export const dataDropdownButton = `[data-dropdown-button]`;
 export const dataDropdown = "[data-dropdown]";
-const dataFilter = "[data-filter]";
+export const dataFilter = "[data-filter]";
 const nav = ".nav-js";
 export const navLink = ".nav-link";
 const dataPhone = "data-phone";
@@ -157,16 +157,7 @@ searchInput.addEventListener("keyup", ({ target }) => {
   handlePortfolioNavFilter(searchElement.value);
 });
 
-portfolioNav.addEventListener("click", (e: Event) => {
-  const navElement = e.target as HTMLElement;
-  const isDataFilter = navElement.matches(`${dataFilter}`);
-  if (isDataFilter) {
-    clearSearchInput();
-    setActive(dataFilter, navElement);
-    const dataset = navElement.dataset.filter!;
-    handlePortfolioNavFilter(dataset);
-  }
-});
+portfolioNav.addEventListener("click", handlePortfolioNavClick);
 
 document.addEventListener("click", documentClickHandler);
 
