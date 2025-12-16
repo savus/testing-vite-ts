@@ -39,23 +39,30 @@ export const clearSearchInput = () => {
 
 export const getAllUsers = () => Requests.getAllUsers().then(setAllUsers);
 
-export const postUser = (body: Omit<TUser, "id">) =>
-  Requests.postUser(body).then(() => {
-    Requests.getAllUsers()
-      .then((users) => {
-        setAllUsers(users);
-      })
-      .then(() => {
-        populateUsers();
-      });
-  });
+export const postUser = (body: Omit<TUser, "id">) => Requests.postUser(body);
 
 export const createUserElement = (user: TUser) => {
-  const { firstName, lastName } = user;
-  const userElement = `<li>
-    <span class="first-name">${firstName}</span>
-    :
-    <span class="last-name">${lastName}</span> 
-  </li>`;
+  const { firstName, lastName, city, email, phone } = user;
+  const userElement = document.createElement("li");
+  const firstNameElement = document.createElement("div");
+  const lastNameElement = document.createElement("div");
+  const cityElement = document.createElement("div");
+  const emailElement = document.createElement("div");
+  const phoneElement = document.createElement("div");
+
+  firstNameElement.innerText = firstName;
+  lastNameElement.innerText = lastName;
+  cityElement.innerText = city;
+  emailElement.innerText = email;
+  phoneElement.innerText = phone;
+
+  userElement.append(
+    firstNameElement,
+    lastNameElement,
+    cityElement,
+    emailElement,
+    phoneElement
+  );
+
   return userElement;
 };

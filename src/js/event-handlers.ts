@@ -1,5 +1,6 @@
 import {
   active,
+  allUsers,
   cityInput,
   dataClose,
   dataDropdown,
@@ -24,11 +25,13 @@ import {
 } from "./index.ts";
 import {
   clearFormValues,
+  getAllUsers,
   getJoinedPhoneInput,
   postUser,
   setActive,
 } from "./helper-functions.ts";
 import { toggleErrorMessage, validateField } from "./utils/validations.ts";
+import { populateUsers } from "./initialization.ts";
 
 /* ClICK */
 export const navBarClickHandler = (e: Event) => {
@@ -157,13 +160,17 @@ export const formSubmitHandler = (e: SubmitEvent) => {
       email: emailInput.value.trim(),
       phone: phoneInputs.map((input) => input.value).join(""),
     });
+
     postUser({
       firstName: firstNameInput.value.trim(),
       lastName: lastNameInput.value.trim(),
       city: cityInput.value.trim(),
       email: emailInput.value.trim(),
       phone: phoneInputs.map((input) => input.value).join(""),
-    });
+    })
+      .then(getAllUsers)
+      .then(populateUsers);
+
     clearFormValues();
   }
 };

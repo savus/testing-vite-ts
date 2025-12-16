@@ -125,8 +125,10 @@ export const usersList = document.querySelector(".users")!;
 // =========================
 
 /* INITIALIZATION */
-populateCities();
 
+clearSearchInput();
+clearFormValues();
+populateCities();
 getAllUsers().then(() => {
   populateUsers();
 });
@@ -170,7 +172,5 @@ portfolioNav.addEventListener("click", (e: Event) => {
 document.addEventListener("click", documentClickHandler);
 
 /* TESTING */
-clearSearchInput();
-clearFormValues();
 
 /** */

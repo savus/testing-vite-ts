@@ -60,6 +60,6 @@ export const populatePortfolioCards = () => {
 export const populateUsers = () => {
   usersList.innerHTML = "";
   allUsers.forEach((user) => {
-    usersList.innerHTML += createUserElement(user);
+    usersList.appendChild(createUserElement(user));
   });
 };
