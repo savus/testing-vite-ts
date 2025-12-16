@@ -1,5 +1,6 @@
 .nav-items {
   display: flex;
+  gap: var(--size-20);
 }
 
 .nav-items li {

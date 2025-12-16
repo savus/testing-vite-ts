@@ -8,6 +8,23 @@ export type TUser = {
 };
 
 export type TUserInformation = Omit<TUser, "id"> | null;
-export type TSetUserInformation = (data: TUserInformation) => void;
 
-export type TSetPhoneInputs = (array: string[]) => void;
+export type TSetUserInformation = (user: TUserInformation) => void;
+
+export type TPortfolioCard = {
+  img: string;
+  altText: string;
+  headerText: string;
+  popupText: string;
+  filter: string;
+};
+
+export type TPhoneInputs = [
+  HTMLInputElement,
+  HTMLInputElement,
+  HTMLInputElement
+];
+
+export type TRegexPatterns = {
+  [key: string]: RegExp;
+};

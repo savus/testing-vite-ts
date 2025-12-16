@@ -10,4 +10,8 @@ BUG - local image paths would cause mime/type error when attempting to import th
 SOLUTION - instead of importing the path using the import <variable name> from "..file/path", initializing variables with the path name using an equals sign works just fine
 ex: const image1 = "../assets/images/image-1.jpg"
 
-TASK: - Go through and fix all typescript errors
+BUG - navbarClickHandler type declaration for event object as e: MouseEvent causing no call overload error.
+
+SOLUTION - use e: Event instead
+
+TASK: Make sure portfolio cards work in html before initializing with javascript

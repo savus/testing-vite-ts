@@ -1,3 +1,4 @@
+import type { TPortfolioCard } from "../types.ts";
 import { cityDatalist, portfolioGrid } from "./index.ts";
 import { PortfolioCards } from "./PortfolioCards.ts";
 import { cities } from "./utils/allCities.ts";
@@ -15,7 +16,7 @@ export const createPortfolioCard = ({
   headerText,
   popupText,
   filter,
-}) => {
+}: TPortfolioCard) => {
   // <div class="portfolio-card">
   const card = document.createElement("div");
   card.className = "portfolio-card";

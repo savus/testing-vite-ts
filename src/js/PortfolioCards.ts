@@ -1,6 +1,7 @@
+import type { TPortfolioCard } from "../types.ts";
 import { Images } from "./images.ts";
 
-export const PortfolioCards = [
+export const PortfolioCards: TPortfolioCard[] = [
   {
     img: Images.Image1,
     altText: "image-1",
