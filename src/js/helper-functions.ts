@@ -1,5 +1,14 @@
-import type { TPhoneInputs } from "../types.ts";
-import { active, formInputs, phoneInputs, searchInput } from "./index.ts";
+import type { TPhoneInputs, TUser } from "../types.ts";
+import { Requests } from "./api.ts";
+import {
+  active,
+  allUsers,
+  formInputs,
+  phoneInputs,
+  searchInput,
+  setAllUsers,
+} from "./index.ts";
+import { populateUsers } from "./initialization.ts";
 
 export const setActive = (selector: string, element: HTMLElement) => {
   const activeElement = document.querySelector(`${selector}.${active}`);
@@ -26,4 +35,34 @@ export const getJoinedPhoneInput = (inputs: TPhoneInputs) =>
 
 export const clearSearchInput = () => {
   searchInput.value = "";
+};
+
+export const getAllUsers = () => Requests.getAllUsers().then(setAllUsers);
+
+export const postUser = (body: Omit<TUser, "id">) => Requests.postUser(body);
+
+export const createUserElement = (user: TUser) => {
+  const { firstName, lastName, city, email, phone } = user;
+  const userElement = document.createElement("li");
+  const firstNameElement = document.createElement("div");
+  const lastNameElement = document.createElement("div");
+  const cityElement = document.createElement("div");
+  const emailElement = document.createElement("div");
+  const phoneElement = document.createElement("div");
+
+  firstNameElement.innerText = firstName;
+  lastNameElement.innerText = lastName;
+  cityElement.innerText = city;
+  emailElement.innerText = email;
+  phoneElement.innerText = phone;
+
+  userElement.append(
+    firstNameElement,
+    lastNameElement,
+    cityElement,
+    emailElement,
+    phoneElement
+  );
+
+  return userElement;
 };

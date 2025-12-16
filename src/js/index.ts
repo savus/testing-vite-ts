@@ -17,13 +17,22 @@ import {
 import {
   clearFormValues,
   clearSearchInput,
+  getAllUsers,
   removeActive,
   setActive,
 } from "./helper-functions.ts";
-import { populateCities, populatePortfolioCards } from "./initialization.ts";
-import type { TPhoneInputs, TUserInformation } from "../types.ts";
+import {
+  populateCities,
+  populatePortfolioCards,
+  populateUsers,
+} from "./initialization.ts";
+import type {
+  TPhoneInputs,
+  TSetAllUsers,
+  TUser,
+  TUserInformation,
+} from "../types.ts";
 
-/* SELECTORS */
 export const active = "active";
 export const isVisible = "is-visible";
 export const dataClose = "[data-close]";
@@ -43,14 +52,14 @@ const portfolioCardClass = "portfolio-card";
 const searchId = "search";
 const portfolioNavClass = "portfolio-nav";
 export const modalOverlayClass = "modal-overlay";
+const modalFormId = "modal-form-js";
 
 const navBar = document.querySelector(nav)!;
 
-/*MODAL FORM*/
 export let hasSubmitted = false;
 export const setHasSubmitted = (state: boolean) => (hasSubmitted = state);
 
-const userForm = document.getElementById("modal-form-js")!;
+const userForm = document.getElementById(modalFormId)!;
 
 export let userInformation: TUserInformation = null;
 export const setUserInformation = (data: TUserInformation) =>
@@ -98,7 +107,6 @@ const closeButtons = document.querySelectorAll(`.${closeButton}`);
 
 export const cityDatalist = document.getElementById(cities)!;
 
-/* PORTFOLIO */
 export const searchInput = document.getElementById(
   searchId
 ) as HTMLInputElement;
@@ -110,17 +118,27 @@ export const portfolioCards = document.querySelectorAll(
   `.${portfolioCardClass}`
 ) as NodeListOf<HTMLDivElement>;
 
-navBar?.addEventListener("click", (e) => {
-  navBarClickHandler(e);
+export let allUsers: TUser[];
+export const setAllUsers: TSetAllUsers = (users) => (allUsers = [...users]);
+export const usersList = document.querySelector(".users")!;
+
+// =========================
+
+/* INITIALIZATION */
+
+clearSearchInput();
+clearFormValues();
+populateCities();
+getAllUsers().then(() => {
+  populateUsers();
 });
 
-/* MODAL FORM */
+/* EVENT LISTENERS */
+navBar.addEventListener("click", navBarClickHandler);
+
 closeButtons.forEach((button) => {
   button.addEventListener("click", closeButtonOnClick);
 });
-
-/* INITIALIZATION */
-populateCities();
 
 formInputs.forEach((input) => {
   input?.addEventListener("keyup", () => {
@@ -151,11 +169,8 @@ portfolioNav.addEventListener("click", (e: Event) => {
   }
 });
 
-/* GLOBAL */
 document.addEventListener("click", documentClickHandler);
 
 /* TESTING */
-clearSearchInput();
-clearFormValues();
 
 /** */

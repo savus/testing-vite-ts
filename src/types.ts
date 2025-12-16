@@ -11,6 +11,8 @@ export type TUserInformation = Omit<TUser, "id"> | null;
 
 export type TSetUserInformation = (user: TUserInformation) => void;
 
+export type TSetAllUsers = (users: TUser[]) => void;
+
 export type TPortfolioCard = {
   img: string;
   altText: string;
