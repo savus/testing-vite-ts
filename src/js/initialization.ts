@@ -1,6 +1,12 @@
 import type { TPortfolioCard } from "../types.ts";
 import { createUserElement } from "./helper-functions.ts";
-import { allUsers, cityDatalist, portfolioGrid, usersList } from "./index.ts";
+import {
+  allUsers,
+  cityDatalist,
+  portfolioCardClass,
+  portfolioGrid,
+  usersList,
+} from "./index.ts";
 import { PortfolioCards } from "./PortfolioCards.ts";
 import { cities } from "./utils/allCities.ts";
 
@@ -55,6 +61,7 @@ export const populatePortfolioCards = () => {
     const cardElement = createPortfolioCard(card);
     portfolioGrid.appendChild(cardElement);
   });
+  return portfolioGrid.querySelectorAll(`.${portfolioCardClass}`);
 };
 
 export const populateUsers = () => {

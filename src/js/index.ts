@@ -48,7 +48,7 @@ const emailId = "email-input";
 const cityId = "city-input";
 const cities = "cities";
 const portfolioClass = "portfolio-grid";
-const portfolioCardClass = "portfolio-card";
+export const portfolioCardClass = "portfolio-card";
 const searchId = "search";
 const portfolioNavClass = "portfolio-nav";
 export const modalOverlayClass = "modal-overlay";
@@ -113,10 +113,7 @@ export const searchInput = document.getElementById(
 const portfolioNav = document.querySelector(`.${portfolioNavClass}`)!;
 
 export const portfolioGrid = document.querySelector(`.${portfolioClass}`)!;
-populatePortfolioCards();
-export const portfolioCards = document.querySelectorAll(
-  `.${portfolioCardClass}`
-) as NodeListOf<HTMLDivElement>;
+export const portfolioCards = populatePortfolioCards();
 
 export let allUsers: TUser[];
 export const setAllUsers: TSetAllUsers = (users) => (allUsers = [...users]);
