@@ -14,8 +14,9 @@ BUG - navbarClickHandler type declaration for event object as e: MouseEvent caus
 
 SOLUTION - use e: Event instead
 
-TASK: refactor api code into cleaner abstractions
+BUG - Typescript error when trying to populate portfolioGrid with cards and then assign the completed node list to variable
 
+SOLUTION - type cast node list as type: NodeListOf<HTMLDivElement>
 
 function sleep(ms) => new Promise((resolve) => setTimeout(resolve, ms));
 

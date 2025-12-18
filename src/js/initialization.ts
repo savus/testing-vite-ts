@@ -1,4 +1,4 @@
-import type { TPortfolioCard } from "../types.ts";
+import type { TPortfolioCard, TPortfolioCards } from "../types.ts";
 import { createUserElement } from "./helper-functions.ts";
 import {
   allUsers,
@@ -61,7 +61,9 @@ export const populatePortfolioCards = () => {
     const cardElement = createPortfolioCard(card);
     portfolioGrid.appendChild(cardElement);
   });
-  return portfolioGrid.querySelectorAll(`.${portfolioCardClass}`);
+  return portfolioGrid.querySelectorAll(
+    `.${portfolioCardClass}`
+  ) as TPortfolioCards;
 };
 
 export const populateUsers = () => {

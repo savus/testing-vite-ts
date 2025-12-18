@@ -30,3 +30,5 @@ export type TPhoneInputs = [
 export type TRegexPatterns = {
   [key: string]: RegExp;
 };
+
+export type TPortfolioCards = NodeListOf<HTMLDivElement>;

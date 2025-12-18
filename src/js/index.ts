@@ -32,6 +32,7 @@ import type {
   TUser,
   TUserInformation,
 } from "../types.ts";
+import { goToNext, goToPrev, initCurrentIndex } from "./portfolio-grid.ts";
 
 export const active = "active";
 export const isVisible = "is-visible";
@@ -39,6 +40,7 @@ export const dataClose = "[data-close]";
 export const dataDropdownButton = `[data-dropdown-button]`;
 export const dataDropdown = "[data-dropdown]";
 export const dataFilter = "[data-filter]";
+const dataSlide = "[data-slide]";
 const nav = ".nav-js";
 export const navLink = ".nav-link";
 const dataPhone = "data-phone";
@@ -49,6 +51,7 @@ const cityId = "city-input";
 const cities = "cities";
 const portfolioClass = "portfolio-grid";
 export const portfolioCardClass = "portfolio-card";
+const sliderClass = ".carousel-btns";
 const searchId = "search";
 const portfolioNavClass = "portfolio-nav";
 export const modalOverlayClass = "modal-overlay";
@@ -114,6 +117,7 @@ const portfolioNav = document.querySelector(`.${portfolioNavClass}`)!;
 
 export const portfolioGrid = document.querySelector(`.${portfolioClass}`)!;
 export const portfolioCards = populatePortfolioCards();
+const carouselSlider = document.querySelector(sliderClass)!;
 
 export let allUsers: TUser[];
 export const setAllUsers: TSetAllUsers = (users) => (allUsers = [...users]);
@@ -126,10 +130,12 @@ export const usersList = document.querySelector(".users")!;
 clearSearchInput();
 clearFormValues();
 populateCities();
-
 refetchData().then(populateUsers);
+initCurrentIndex(portfolioCards);
 
 /* EVENT LISTENERS */
+document.addEventListener("click", documentClickHandler);
+
 navBar.addEventListener("click", navBarClickHandler);
 
 closeButtons.forEach((button) => {
@@ -137,7 +143,7 @@ closeButtons.forEach((button) => {
 });
 
 formInputs.forEach((input) => {
-  input?.addEventListener("keyup", () => {
+  input.addEventListener("keyup", () => {
     inputKeyUpHandler(input);
   });
 });
@@ -146,7 +152,7 @@ phoneInputs.forEach((input, index: number) => {
   input.addEventListener("keyup", phoneOnChangeEventHandler(index));
 });
 
-userForm?.addEventListener("submit", formSubmitHandler);
+userForm.addEventListener("submit", formSubmitHandler);
 
 searchInput.addEventListener("keyup", ({ target }) => {
   const searchElement = target as HTMLInputElement;
@@ -156,8 +162,14 @@ searchInput.addEventListener("keyup", ({ target }) => {
 
 portfolioNav.addEventListener("click", handlePortfolioNavClick);
 
-document.addEventListener("click", documentClickHandler);
-
+carouselSlider.addEventListener("click", (e: Event) => {
+  const button = e.target as HTMLButtonElement;
+  const isSliderBtn = button.matches(dataSlide);
+  if (isSliderBtn)
+    button.dataset.slide === "prev"
+      ? goToPrev(portfolioCards)
+      : goToNext(portfolioCards);
+});
 /* TESTING */
 
 /** */
