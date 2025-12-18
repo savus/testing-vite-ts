@@ -41,6 +41,7 @@ export const dataDropdownButton = `[data-dropdown-button]`;
 export const dataDropdown = "[data-dropdown]";
 export const dataFilter = "[data-filter]";
 const dataSlide = "[data-slide]";
+export const dataMode = "[data-mode]";
 const nav = ".nav-js";
 export const navLink = ".nav-link";
 const dataPhone = "data-phone";
@@ -49,11 +50,13 @@ const lastNameId = "last-name-input";
 const emailId = "email-input";
 const cityId = "city-input";
 const cities = "cities";
+const portfolioSectionClass = "portfolio-section";
 const portfolioClass = "portfolio-grid";
 export const portfolioCardClass = "portfolio-card";
 const sliderClass = ".carousel-btns";
 const searchId = "search";
 const portfolioNavClass = "portfolio-nav";
+export const carousel = "carousel";
 export const modalOverlayClass = "modal-overlay";
 const modalFormId = "modal-form-js";
 
@@ -110,11 +113,14 @@ const closeButtons = document.querySelectorAll(`.${closeButton}`);
 
 export const cityDatalist = document.getElementById(cities)!;
 
+export const portfolioSection = document.querySelector(
+  `.${portfolioSectionClass}`
+)!;
+console.log(portfolioSection);
 export const searchInput = document.getElementById(
   searchId
 ) as HTMLInputElement;
 const portfolioNav = document.querySelector(`.${portfolioNavClass}`)!;
-
 export const portfolioGrid = document.querySelector(`.${portfolioClass}`)!;
 export const portfolioCards = populatePortfolioCards();
 const carouselSlider = document.querySelector(sliderClass)!;

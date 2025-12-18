@@ -1,10 +1,12 @@
 import {
   active,
+  carousel,
   cityInput,
   dataClose,
   dataDropdown,
   dataDropdownButton,
   dataFilter,
+  dataMode,
   doBadInputsExist,
   emailInput,
   firstNameInput,
@@ -17,6 +19,7 @@ import {
   navLink,
   phoneInputs,
   portfolioCards,
+  portfolioSection,
   setDoBadInputsExist,
   setHasSubmitted,
   setPhoneInputs,
@@ -60,11 +63,23 @@ export const handlePortfolioNavFilter = (value: string) => {
 export const handlePortfolioNavClick = (e: Event) => {
   const navElement = e.target as HTMLElement;
   const isDataFilter = navElement.matches(`${dataFilter}`);
+  const isDataMode = navElement.matches(`${dataMode}`);
   if (isDataFilter) {
     clearSearchInput();
     setActive(dataFilter, navElement);
     const dataset = navElement.dataset.filter!;
     handlePortfolioNavFilter(dataset);
+  }
+
+  if (isDataMode) {
+    switch (navElement.dataset.mode) {
+      case "gallery":
+        portfolioSection.classList.remove(carousel);
+        break;
+      case "carousel":
+        portfolioSection.classList.add(carousel);
+        break;
+    }
   }
 };
 

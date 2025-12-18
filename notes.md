@@ -18,6 +18,8 @@ BUG - Typescript error when trying to populate portfolioGrid with cards and then
 
 SOLUTION - type cast node list as type: NodeListOf<HTMLDivElement>
 
+TASK: refactor code into component-like sections and clean up abstractions
+
 function sleep(ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let sleepTime = 100;

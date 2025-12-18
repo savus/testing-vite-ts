@@ -27,6 +27,11 @@
   left: -15%;
 }
 
+.portfolio-section.carousel .search-container,
+.portfolio-section.carousel .filter-link {
+  display: none;
+}
+
 .portfolio-section .portfolio-grid {
   --box-size: 255px;
   padding-top: var(--size-20);
@@ -35,7 +40,7 @@
   gap: var(--size-8);
 }
 
-.portfolio-section .portfolio-grid.carousel {
+.portfolio-section.carousel .portfolio-grid {
   height: var(--box-size);
   position: relative;
   padding: var(--size-50) 0 var(--size-100);
@@ -52,29 +57,47 @@
   cursor: pointer;
 }
 
-.portfolio-grid.carousel .portfolio-card {
+.portfolio-section.carousel .portfolio-card {
+  --transition-spd: 0s;
   --opacity: 0;
   --translate-x: 0;
   --translate-y: 0;
   transform: translate(var(--translate-x), var(--translate-y));
   opacity: var(--opacity);
   position: absolute;
+  transition: all var(--transition-spd) ease-in-out;
 }
 
-.portfolio-grid.carousel .portfolio-card.active {
+.portfolio-section.carousel .portfolio-card {
+  --transition-spd: 0.4s;
+}
+
+.portfolio-section button:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #000;
+}
+
+.portfolio-section.carousel button:active {
+  color: #000;
+  background-color: #fff;
+}
+
+.portfolio-section.carousel .portfolio-card.active {
   --opacity: 1;
+  z-index: 10;
 }
 
-.portfolio-grid.carousel .portfolio-card.next,
-.portfolio-grid.carousel .portfolio-card.prev {
+.portfolio-section.carousel .portfolio-card.next,
+.portfolio-section.carousel .portfolio-card.prev {
   --opacity: 0.5;
 }
-.portfolio-grid.carousel .portfolio-card.prev {
+.portfolio-section.carousel .portfolio-card.prev {
   --translate-x: -105%;
   --translate-y: 10%;
 }
 
-.portfolio-grid.carousel .portfolio-card.next {
+.portfolio-section.carousel .portfolio-card.next {
   --translate-x: 105%;
   --translate-y: 10%;
 }
@@ -136,22 +159,13 @@
   margin: 0;
 }
 
-.carousel-btns {
+.portfolio-section .carousel-btns {
+  gap: var(--size-50);
+  display: none;
+}
+
+.portfolio-section.carousel .carousel-btns {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--size-50);
-}
-
-.carousel-btns button:hover {
-  cursor: pointer;
-}
-.carousel-btns button:hover {
-  color: #fff;
-  background-color: #000;
-}
-
-.carousel-btns button:active {
-  color: #000;
-  background-color: #fff;
 }
