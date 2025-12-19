@@ -91,7 +91,6 @@ export const documentClickHandler = (e: Event) => {
 
   const isModalOverlay = document.matches(`.${modalOverlayClass}`);
 
-  /* DROPDOWN MENUS */
   if (!isDropdownButton && dropDownParent != null) return;
 
   if (isDropdownButton) {
@@ -103,7 +102,6 @@ export const documentClickHandler = (e: Event) => {
     dropdown.classList.remove(active);
   });
 
-  /* MODALS */
   if (isModalOverlay) {
     document.classList.remove(isVisible);
   }
