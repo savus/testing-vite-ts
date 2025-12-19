@@ -57,7 +57,7 @@ const createPortfolioCard = ({
   return card;
 };
 
-export const populatePortfolioCards = () => {
+export const populatePortfolioCards = async () => {
   PortfolioCards.forEach((card) => {
     const cardElement = createPortfolioCard(card);
     portfolioGrid.appendChild(cardElement);

@@ -36,7 +36,7 @@ export let allUsers: TUser[];
 
 const navBar = document.querySelector(nav)!;
 
-export const portfolioCards = populatePortfolioCards();
+export const portfolioCards = await populatePortfolioCards();
 
 const closeButtons = document.querySelectorAll(`.${closeButton}`);
 export const usersList = document.querySelector(".users")!;

@@ -18,6 +18,8 @@ BUG - Typescript error when trying to populate portfolioGrid with cards and then
 
 SOLUTION - type cast node list as type: NodeListOf<HTMLDivElement>
 
+BREAKTHROUGH - to perform a task like constructing and populating portfolio cards from a local list of data and storing that nodelist in a variable once it's finished constructing, use an async function that builds the HTML and returns the nodelist, and then set the variable to await ex: const porfolioCards = await func()
+
 TASK: - refactor code into component-like sections and clean up abstractions
 
 - clean up portfolio.ts functions
