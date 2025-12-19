@@ -137,7 +137,7 @@ clearSearchInput();
 clearFormValues();
 populateCities();
 refetchData().then(populateUsers);
-initCurrentIndex(portfolioCards);
+initCurrentIndex();
 
 /* EVENT LISTENERS */
 document.addEventListener("click", documentClickHandler);
@@ -171,11 +171,12 @@ portfolioNav.addEventListener("click", handlePortfolioNavClick);
 carouselSlider.addEventListener("click", (e: Event) => {
   const button = e.target as HTMLButtonElement;
   const isSliderBtn = button.matches(dataSlide);
-  if (isSliderBtn)
-    button.dataset.slide === "prev"
-      ? goToPrev(portfolioCards)
-      : goToNext(portfolioCards);
+  if (isSliderBtn) button.dataset.slide === "prev" ? goToPrev() : goToNext();
 });
 /* TESTING */
+
+// const wait = new Promise((resolve) => {
+//   return setTimeout(resolve, 100);
+// });
 
 /** */
