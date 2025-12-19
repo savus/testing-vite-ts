@@ -18,7 +18,9 @@ BUG - Typescript error when trying to populate portfolioGrid with cards and then
 
 SOLUTION - type cast node list as type: NodeListOf<HTMLDivElement>
 
-TASK: refactor code into component-like sections and clean up abstractions
+TASK: - refactor code into component-like sections and clean up abstractions
+
+- clean up portfolio.ts functions
 
 function sleep(ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -26,15 +28,14 @@ let sleepTime = 100;
 let curPhraseIndex = 0;
 
 const writeLoop = async () => {
-    while (true) {
-        let curWord = phrases[curPhraseIndex];
-        for (let i = 0; i < curWord.length; i++) {
-            el.innerText = curWord.substring(0, i + 1);
-            await sleep(sleepTime);
-        }
-        await sleep(sleepTime * 10);
-    }
+while (true) {
+let curWord = phrases[curPhraseIndex];
+for (let i = 0; i < curWord.length; i++) {
+el.innerText = curWord.substring(0, i + 1);
+await sleep(sleepTime);
 }
-
+await sleep(sleepTime \* 10);
+}
+}
 
 writeLoop();

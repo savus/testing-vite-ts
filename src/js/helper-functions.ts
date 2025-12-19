@@ -1,6 +1,6 @@
 import type { TUser } from "../types.ts";
 import { Requests } from "./api.ts";
-import { active, searchInput, setAllUsers } from "./index.ts";
+import { active, setAllUsers } from "./index.ts";
 
 export const setActive = (selector: string, element: HTMLElement) => {
   const activeElement = document.querySelector(`${selector}.${active}`);
@@ -11,10 +11,6 @@ export const setActive = (selector: string, element: HTMLElement) => {
 export const removeActive = (selector: string) => {
   const activeElement = document.querySelector(`${selector}.${active}`);
   if (activeElement !== null) activeElement.classList.remove(active);
-};
-
-export const clearSearchInput = () => {
-  searchInput.value = "";
 };
 
 export const refetchData = () => Requests.getAllUsers().then(setAllUsers);

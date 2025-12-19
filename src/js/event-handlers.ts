@@ -1,18 +1,13 @@
+import { setActive } from "./helper-functions.ts";
 import {
   active,
-  carousel,
   dataClose,
   dataDropdown,
   dataDropdownButton,
-  dataFilter,
-  dataMode,
   isVisible,
   modalOverlayClass,
   navLink,
-  portfolioCards,
-  portfolioSection,
 } from "./index.ts";
-import { clearSearchInput, setActive } from "./helper-functions.ts";
 
 /* ClICK */
 export const navBarClickHandler = (e: Event) => {
@@ -29,37 +24,6 @@ export const closeButtonOnClick = (e: Event) => {
   const element = e.target as HTMLDivElement;
   const parentToClose = element.closest(dataClose)!;
   parentToClose.classList.remove(isVisible);
-};
-
-export const handlePortfolioNavFilter = (value: string) => {
-  portfolioCards.forEach((card) => {
-    if (value === "all") card.style.display = "block";
-    else if (value.includes(card.dataset.filter!)) card.style.display = "block";
-    else card.style.display = "none";
-  });
-};
-
-export const handlePortfolioNavClick = (e: Event) => {
-  const navElement = e.target as HTMLElement;
-  const isDataFilter = navElement.matches(`${dataFilter}`);
-  const isDataMode = navElement.matches(`${dataMode}`);
-  if (isDataFilter) {
-    clearSearchInput();
-    setActive(dataFilter, navElement);
-    const dataset = navElement.dataset.filter!;
-    handlePortfolioNavFilter(dataset);
-  }
-
-  if (isDataMode) {
-    switch (navElement.dataset.mode) {
-      case "gallery":
-        portfolioSection.classList.remove(carousel);
-        break;
-      case "carousel":
-        portfolioSection.classList.add(carousel);
-        break;
-    }
-  }
 };
 
 export const documentClickHandler = (e: Event) => {
