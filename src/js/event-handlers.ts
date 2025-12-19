@@ -1,39 +1,18 @@
 import {
   active,
   carousel,
-  cityInput,
   dataClose,
   dataDropdown,
   dataDropdownButton,
   dataFilter,
   dataMode,
-  doBadInputsExist,
-  emailInput,
-  firstNameInput,
-  formInputs,
-  hasSubmitted,
   isVisible,
-  lastNameInput,
-  maxInputLengths,
   modalOverlayClass,
   navLink,
-  phoneInputs,
   portfolioCards,
   portfolioSection,
-  setDoBadInputsExist,
-  setHasSubmitted,
-  setPhoneInputs,
-  setUserInformation,
 } from "./index.ts";
-import {
-  clearFormValues,
-  clearSearchInput,
-  createUser,
-  getJoinedPhoneInput,
-  setActive,
-} from "./helper-functions.ts";
-import { toggleErrorMessage, validateField } from "./utils/validations.ts";
-import { populateUsers } from "./initialization.ts";
+import { clearSearchInput, setActive } from "./helper-functions.ts";
 
 /* ClICK */
 export const navBarClickHandler = (e: Event) => {
@@ -108,90 +87,3 @@ export const documentClickHandler = (e: Event) => {
 };
 
 /* KEYUP */
-
-const handleInputValidation = (inputField: HTMLInputElement) => {
-  const regex = inputField.name.valueOf();
-  const inputValue =
-    regex === "phone" ? getJoinedPhoneInput(phoneInputs) : inputField.value;
-  const isValidField = validateField(inputValue, regex);
-  toggleErrorMessage(inputField, isValidField);
-  if (!isValidField) setDoBadInputsExist(true);
-  else setDoBadInputsExist(false);
-  return isValidField;
-};
-
-export const inputKeyUpHandler = (inputField: HTMLInputElement) => {
-  if (hasSubmitted) handleInputValidation(inputField);
-};
-
-export const phoneOnChangeEventHandler =
-  (index: number) => (e: KeyboardEvent) => {
-    const inputElement = e.target as HTMLInputElement;
-    const value = inputElement.value;
-    const keyPressed = e.code;
-    const restrictedKeys = [
-      "ArrowRight",
-      "ArrowLeft",
-      "ArrowDown",
-      "ArrowUp",
-      "Space",
-      "Tab",
-    ];
-    const restrictedKeyPressed = restrictedKeys.includes(keyPressed);
-    const currentMaxLength = maxInputLengths[index];
-    const nextInput =
-      index < phoneInputs.length - 1
-        ? phoneInputs[index + 1]
-        : phoneInputs[index];
-    const prevInput = index > 0 ? phoneInputs[index - 1] : phoneInputs[index];
-    const shouldGoToNextInput = value.length === currentMaxLength;
-    const shouldGoToPrevInput = value.length === 0;
-
-    const newState = phoneInputs.map((phoneInputField, phoneInputIndex) =>
-      index === phoneInputIndex ? value : phoneInputField.value
-    );
-
-    if (shouldGoToNextInput && !restrictedKeyPressed) {
-      nextInput.focus();
-    }
-
-    if (shouldGoToPrevInput && !restrictedKeyPressed) {
-      prevInput.focus();
-    }
-
-    setPhoneInputs(newState);
-
-    if (hasSubmitted) handleInputValidation(phoneInputs[0]);
-  };
-
-/* SUBMIT */
-export const formSubmitHandler = (e: SubmitEvent) => {
-  e.preventDefault();
-  setHasSubmitted(true);
-
-  formInputs.forEach((input) => {
-    handleInputValidation(input);
-  });
-
-  handleInputValidation(phoneInputs[0]);
-
-  if (!doBadInputsExist) {
-    setUserInformation({
-      firstName: firstNameInput.value.trim(),
-      lastName: lastNameInput.value.trim(),
-      city: cityInput.value.trim(),
-      email: emailInput.value.trim(),
-      phone: phoneInputs.map((input) => input.value).join(""),
-    });
-
-    createUser({
-      firstName: firstNameInput.value.trim(),
-      lastName: lastNameInput.value.trim(),
-      city: cityInput.value.trim(),
-      email: emailInput.value.trim(),
-      phone: phoneInputs.map((input) => input.value).join(""),
-    }).then(populateUsers);
-
-    clearFormValues();
-  }
-};
