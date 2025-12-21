@@ -44,6 +44,11 @@ const restrictedKeys = [
   "Tab",
 ];
 
+const permittedInput = {
+  regex: /\d/,
+  allowedKeys: ["Tab", "Backspace", "Enter"],
+};
+
 const setDoBadInputsExist = (boolean: boolean) => (doBadInputsExist = boolean);
 
 export const clearPhoneInputs = () => {
@@ -138,6 +143,17 @@ const formSubmitHandler = (e: SubmitEvent) => {
 formInputs.forEach((input) => {
   input.addEventListener("keyup", () => {
     inputKeyUpHandler(input);
+  });
+});
+
+phoneInputs.forEach((input) => {
+  input.addEventListener("keydown", (e) => {
+    const keyPressed = e.code;
+    if (
+      !permittedInput.regex.test(keyPressed) &&
+      !permittedInput.allowedKeys.includes(keyPressed)
+    )
+      e.preventDefault();
   });
 });
 
