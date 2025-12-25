@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "json-server --watch db.json",
+    "serve:slow": "json-server --watch db.json --delay 3000"
   },
   "devDependencies": {
     "typescript": "~5.9.3",

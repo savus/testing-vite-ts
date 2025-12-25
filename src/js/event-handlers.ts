@@ -27,14 +27,12 @@ export const closeButtonOnClick = (e: Event) => {
 };
 
 export const documentClickHandler = (e: Event) => {
-  const document = e.target as HTMLElement;
+  const documentElement = e.target as HTMLElement;
+  const isDropdownButton = documentElement.matches(dataDropdownButton);
+  const dropDownParent = documentElement.closest(dataDropdown)!;
+  const isModalOverlay = documentElement.matches(`.${modalOverlayClass}`);
 
-  const isDropdownButton = document.matches(dataDropdownButton);
-  const dropDownParent = document.closest(dataDropdown)!;
-
-  const isModalOverlay = document.matches(`.${modalOverlayClass}`);
-
-  if (!isDropdownButton && dropDownParent != null) return;
+  if (!isDropdownButton && dropDownParent !== null) return;
 
   if (isDropdownButton) {
     dropDownParent.classList.toggle(active);
@@ -46,7 +44,7 @@ export const documentClickHandler = (e: Event) => {
   });
 
   if (isModalOverlay) {
-    document.classList.remove(isVisible);
+    documentElement.classList.remove(isVisible);
   }
 };
 
