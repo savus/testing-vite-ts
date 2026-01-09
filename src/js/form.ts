@@ -120,21 +120,19 @@ const formSubmitHandler = (e: SubmitEvent) => {
   handleInputValidation(phoneInputs[0]);
 
   if (!doBadInputsExist) {
-    setUserInformation({
+    const user = {
       firstName: firstNameInput.value.trim(),
       lastName: lastNameInput.value.trim(),
       city: cityInput.value.trim(),
       email: emailInput.value.trim(),
       phone: phoneInputs.map((input) => input.value).join(""),
-    });
+    };
 
-    createUser({
-      firstName: firstNameInput.value.trim(),
-      lastName: lastNameInput.value.trim(),
-      city: cityInput.value.trim(),
-      email: emailInput.value.trim(),
-      phone: phoneInputs.map((input) => input.value).join(""),
-    }).then(populateUsers);
+    setUserInformation(user);
+
+    createUser(user).then(() => {
+      populateUsers(true);
+    });
 
     clearFormValues();
   }

@@ -9,9 +9,11 @@ export const populateCities = () =>
     cityDatalist.appendChild(option);
   });
 
-export const populateUsers = () => {
-  usersList.innerHTML = "";
-  allUsers.forEach((user) => {
-    usersList.appendChild(createUserElement(user));
-  });
+export const populateUsers = (shouldPopulateUsers: boolean) => {
+  if (shouldPopulateUsers) {
+    usersList.innerHTML = "<div>Users: </div>";
+    allUsers.forEach((user) => {
+      usersList.appendChild(createUserElement(user));
+    });
+  }
 };

@@ -24,6 +24,8 @@ TASK: - refactor code into component-like sections and clean up abstractions
 
 - clean up portfolio.ts functions
 
+- fix carousel mode bug that causes cards' opacity to be 0 when either search input field or nav filters have been used.
+
 function sleep(ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let sleepTime = 100;

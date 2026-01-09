@@ -54,7 +54,9 @@ export const setAllUsers: TSetAllUsers = (users) => (allUsers = [...users]);
 clearSearchInput();
 clearFormValues();
 populateCities();
-refetchData().then(populateUsers);
+refetchData().then(() => {
+  populateUsers(true);
+});
 initCurrentIndex();
 
 document.addEventListener("click", documentClickHandler);

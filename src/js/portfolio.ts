@@ -79,18 +79,22 @@ export const clearSearchInput = () => {
   searchInput.value = "";
 };
 
+const displayAllCards = () =>
+  portfolioCards.forEach((card) => (card.style.display = "block"));
+
 const handlePortfolioNavClick = (e: Event) => {
   const navElement = e.target as HTMLElement;
   const isDataFilter = navElement.matches(`${dataFilter}`);
   const isDataMode = navElement.matches(`${dataMode}`);
-  if (isDataFilter) {
+
+  const handleDataFilterClick = () => {
     clearSearchInput();
     setActive(dataFilter, navElement);
     const dataset = navElement.dataset.filter!;
     handlePortfolioNavFilter(dataset);
-  }
+  };
 
-  if (isDataMode) {
+  const handleDataModeClick = () => {
     switch (navElement.dataset.mode) {
       case "gallery":
         portfolioSection.classList.remove(carousel);
@@ -99,13 +103,21 @@ const handlePortfolioNavClick = (e: Event) => {
         portfolioSection.classList.add(carousel);
         break;
     }
+  };
+
+  if (isDataFilter) handleDataFilterClick();
+
+  if (isDataMode) {
+    handleDataModeClick();
   }
 };
 
-searchInput.addEventListener("keyup", ({ target }) => {
-  const searchElement = target as HTMLInputElement;
+const searchOnKeyUp = (e: KeyboardEvent) => {
+  const searchElement = e.target as HTMLInputElement;
   removeActive(dataFilter);
   handlePortfolioNavFilter(searchElement.value);
-});
+};
+
+searchInput.addEventListener("keyup", searchOnKeyUp);
 
 portfolioNav.addEventListener("click", handlePortfolioNavClick);
