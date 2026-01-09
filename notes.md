@@ -24,7 +24,10 @@ TASK: - refactor code into component-like sections and clean up abstractions
 
 - clean up portfolio.ts functions
 
-- fix carousel mode bug that causes cards' opacity to be 0 when either search input field or nav filters have been used.
+
+BUG - When porfolio grid was changed to carousel mode after either the nav links were clicked, or when the search input had been typed in, several cards would not show up.
+
+SOLUTION - The portfolio cards are directly related to the nav links via an HTML data-filter attribute, and the center card in the carousel that shows up is given its css through the .active class, which gets removed when a nav link is clicked, or when the search bar is typed into. The solution was to make the carousel's main card use .current as its css class, and to make sure that when the portfolio changes modes back and forth from gallery to carousel and vice-versa the cards are all reset to display: block;. 
 
 function sleep(ms) => new Promise((resolve) => setTimeout(resolve, ms));
 

@@ -17,6 +17,12 @@ import { initCurrentIndex } from "./carousel.ts";
 import { clearFormValues } from "./form.ts";
 import { clearSearchInput, populatePortfolioCards } from "./portfolio.ts";
 
+export const CSS_STYLES = {
+  DISPLAY: {
+    BLOCK: "block",
+    NONE: "none",
+  },
+};
 export const active = "active";
 export const isVisible = "is-visible";
 const cities = "cities";

@@ -83,7 +83,7 @@
   background-color: #fff;
 }
 
-.portfolio-section.carousel .portfolio-card.active {
+.portfolio-section.carousel .portfolio-card.current {
   --opacity: 1;
   z-index: 10;
 }

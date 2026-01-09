@@ -1,12 +1,16 @@
-import { portfolioCards } from "./index.ts";
+import { CSS_STYLES, portfolioCards } from "./index.ts";
 import type { TPortfolioCard, TPortfolioCards } from "../types";
 import { removeActive, setActive } from "./helper-functions";
 import { PortfolioCards } from "./PortfolioCards";
 
 const searchId = "search";
-const carousel = "carousel";
 const dataFilter = "[data-filter]";
 const dataMode = "[data-mode]";
+
+const MODES = {
+  CAROUSEL: "carousel",
+  GALLERY: "gallery",
+};
 
 const portfolioSectionClass = "portfolio-section";
 const portfolioClass = "portfolio-grid";
@@ -69,9 +73,11 @@ export const populatePortfolioCards = async () => {
 
 const handlePortfolioNavFilter = (value: string) => {
   portfolioCards.forEach((card) => {
-    if (value === "all") card.style.display = "block";
-    else if (value.includes(card.dataset.filter!)) card.style.display = "block";
-    else card.style.display = "none";
+    if (value === "all" || value.length === 0)
+      card.style.display = CSS_STYLES.DISPLAY.BLOCK;
+    else if (value.includes(card.dataset.filter!))
+      card.style.display = CSS_STYLES.DISPLAY.BLOCK;
+    else card.style.display = CSS_STYLES.DISPLAY.NONE;
   });
 };
 
@@ -80,7 +86,9 @@ export const clearSearchInput = () => {
 };
 
 const displayAllCards = () =>
-  portfolioCards.forEach((card) => (card.style.display = "block"));
+  portfolioCards.forEach(
+    (card) => (card.style.display = CSS_STYLES.DISPLAY.BLOCK)
+  );
 
 const handlePortfolioNavClick = (e: Event) => {
   const navElement = e.target as HTMLElement;
@@ -95,12 +103,13 @@ const handlePortfolioNavClick = (e: Event) => {
   };
 
   const handleDataModeClick = () => {
+    displayAllCards();
     switch (navElement.dataset.mode) {
-      case "gallery":
-        portfolioSection.classList.remove(carousel);
+      case MODES.GALLERY:
+        portfolioSection.classList.remove(MODES.CAROUSEL);
         break;
-      case "carousel":
-        portfolioSection.classList.add(carousel);
+      case MODES.CAROUSEL:
+        portfolioSection.classList.add(MODES.CAROUSEL);
         break;
     }
   };

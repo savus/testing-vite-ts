@@ -8,9 +8,15 @@ let currentIndex = 0;
 let prevIndex = 0;
 let nextIndex = 0;
 
+const DISPLAYS = {
+  CURRENT: "current",
+  PREV: "prev",
+  NEXT: "next",
+};
+
 export const clearSlides = () =>
   portfolioCards.forEach((slide) =>
-    slide.classList.remove("active", "prev", "next")
+    slide.classList.remove(DISPLAYS.CURRENT, DISPLAYS.PREV, DISPLAYS.NEXT)
   );
 
 export const updateIndexes = (num: number) => {
@@ -18,9 +24,9 @@ export const updateIndexes = (num: number) => {
   prevIndex = currentIndex > 0 ? currentIndex - 1 : portfolioCards.length - 1;
   nextIndex = currentIndex < portfolioCards.length - 1 ? currentIndex + 1 : 0;
   clearSlides();
-  portfolioCards[prevIndex].classList.add("prev");
-  portfolioCards[currentIndex].classList.add("active");
-  portfolioCards[nextIndex].classList.add("next");
+  portfolioCards[prevIndex].classList.add(DISPLAYS.PREV);
+  portfolioCards[currentIndex].classList.add(DISPLAYS.CURRENT);
+  portfolioCards[nextIndex].classList.add(DISPLAYS.NEXT);
 };
 
 export const initCurrentIndex = () => {
@@ -41,5 +47,6 @@ export const goToPrev = () =>
 carouselSlider.addEventListener("click", (e: Event) => {
   const button = e.target as HTMLButtonElement;
   const isSliderBtn = button.matches(dataSlide);
-  if (isSliderBtn) button.dataset.slide === "prev" ? goToPrev() : goToNext();
+  if (isSliderBtn)
+    button.dataset.slide === DISPLAYS.PREV ? goToPrev() : goToNext();
 });
